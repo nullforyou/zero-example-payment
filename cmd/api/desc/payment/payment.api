@@ -1,0 +1,29 @@
+type(
+    PaymentReq{
+        OrderSerialNumber string `path:"order_serial_number"`
+        PaymentWay int64 `json:"payment_way" validate:"min=1,max=10"`
+        PaymentAmount float64 `json:"payment_amount" validate:"gt=0"`
+        TransactionPassword string `json:"transaction_password" validate:"min=6"`
+    }
+
+    PaymentResp{
+        OrderSerialNumber string `path:"order_serial_number"`
+    }
+
+    PaymentNoticeReq{
+        Code int64 `json:"code"`
+        Data PaymentNoticePayloadReq `json:"data"`
+    }
+
+    PaymentNoticePayloadReq{
+        OrderSerialNumber string `json:"order_serial_number"`
+        PaymentWay int64 `json:"payment_way"`
+        PaymentAmount float64 `json:"payment_amount"`
+        PaymentSerialNumber string `json:"payment_serial_number"`
+        PaymentTime int64 `json:"payment_time"`
+    }
+
+    PaymentNoticeResp{
+        Code string `json:"code"`
+    }
+)

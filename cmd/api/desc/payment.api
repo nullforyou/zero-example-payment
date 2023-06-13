@@ -1,0 +1,36 @@
+syntax = "v1"
+
+info(
+	title: "支付服务"
+	desc: "支付服务"
+	author: "jiangx"
+	email: "jiangx@xxx.com"
+	version: "v1"
+)
+
+import (
+	"payment/payment.api"
+)
+
+@server(
+	prefix: payment
+	group: payment
+	jwt: Jwt
+)
+
+service payment-api {
+	@doc "支付"
+	@handler createPayment
+	post /orders/:order_serial_number/payment (PaymentReq) returns (PaymentResp)
+}
+
+@server(
+	prefix: payment
+	group: payment
+)
+
+service payment-api {
+	@doc "支付"
+	@handler orderPaymentNotice
+	post /orders/payments/notice (PaymentNoticeReq) returns (PaymentNoticeResp)
+}
