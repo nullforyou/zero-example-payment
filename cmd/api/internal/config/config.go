@@ -16,4 +16,7 @@ type Config struct {
 		TablePrefix string
 	}
 	PaymentRpc zrpc.RpcClientConf
+	OrderRpc   zrpc.RpcClientConf
+
+	MicroServiceTarget string
 }

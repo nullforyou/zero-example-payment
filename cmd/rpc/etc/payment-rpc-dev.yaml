@@ -26,11 +26,6 @@ OrderRpc:
       - 127.0.0.1:2379
     Key: order.rpc
 
-MicroService:
-  Driver: 'dtm-driver-gozero' # 配置dtm使用go-zero的微服务协议
-  Target: 'etcd://127.0.0.1:2379/dtmservice' # 把dtm注册到etcd的这个地址
-  EndPoint: '127.0.0.1:36790' # dtm的本地地址
-
 #链路追踪
 Telemetry:
   Name: payment-rpc

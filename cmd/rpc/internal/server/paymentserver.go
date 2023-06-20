@@ -29,7 +29,17 @@ func (s *PaymentServer) CreatePayment(ctx context.Context, in *payment.CreatePay
 }
 
 // 支付结果通知
-func (s *PaymentServer) OrderPaymentNotice(ctx context.Context, in *payment.PaymentNoticeReq) (*payment.PaymentNoticePayReply, error) {
-	l := logic.NewOrderPaymentNoticeLogic(ctx, s.svcCtx)
-	return l.OrderPaymentNotice(in)
+func (s *PaymentServer) OrderPaymentNoticeTccTry(ctx context.Context, in *payment.PaymentNoticeReq) (*payment.PaymentNoticePayReply, error) {
+	l := logic.NewOrderPaymentNoticeTccTryLogic(ctx, s.svcCtx)
+	return l.OrderPaymentNoticeTccTry(in)
+}
+
+func (s *PaymentServer) OrderPaymentNoticeTccConfirm(ctx context.Context, in *payment.PaymentNoticeReq) (*payment.PaymentNoticePayReply, error) {
+	l := logic.NewOrderPaymentNoticeTccConfirmLogic(ctx, s.svcCtx)
+	return l.OrderPaymentNoticeTccConfirm(in)
+}
+
+func (s *PaymentServer) OrderPaymentNoticeTccCancel(ctx context.Context, in *payment.PaymentNoticeReq) (*payment.PaymentNoticePayReply, error) {
+	l := logic.NewOrderPaymentNoticeTccCancelLogic(ctx, s.svcCtx)
+	return l.OrderPaymentNoticeTccCancel(in)
 }

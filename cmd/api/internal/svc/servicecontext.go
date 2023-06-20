@@ -1,21 +1,18 @@
 package svc
 
 import (
-	"github.com/zeromicro/go-zero/zrpc"
 	"go-zero-base/custom_validate"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
-	"greet-pb/payment/paymentclient"
 	"payment/cmd/api/internal/config"
 )
 
 type ServiceContext struct {
-	Config     config.Config
-	DbEngine   *gorm.DB
-	PaymentRpc paymentclient.Payment
-	Validator  custom_validate.Validator
+	Config    config.Config
+	DbEngine  *gorm.DB
+	Validator custom_validate.Validator
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -31,9 +28,8 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	}
 
 	return &ServiceContext{
-		Config:     c,
-		DbEngine:   db,
-		Validator:  custom_validate.InitValidator(),
-		PaymentRpc: paymentclient.NewPayment(zrpc.MustNewClient(c.PaymentRpc)),
+		Config:    c,
+		DbEngine:  db,
+		Validator: custom_validate.InitValidator(),
 	}
 }

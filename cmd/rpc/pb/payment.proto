@@ -32,6 +32,14 @@ message PaymentNoticePayReply{
 service payment{
     //创建支付单
     rpc createPayment(CreatePaymentReq) returns (CreatePaymentReply);
+
+
     //支付结果通知
-    rpc orderPaymentNotice(PaymentNoticeReq) returns (PaymentNoticePayReply);
+    rpc orderPaymentNoticeTccTry(PaymentNoticeReq) returns (PaymentNoticePayReply);
+    rpc orderPaymentNoticeTccConfirm(PaymentNoticeReq) returns (PaymentNoticePayReply);
+    rpc orderPaymentNoticeTccCancel(PaymentNoticeReq) returns (PaymentNoticePayReply);
+
+
+
 }
+

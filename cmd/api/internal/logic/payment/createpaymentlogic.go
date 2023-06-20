@@ -2,7 +2,9 @@ package payment
 
 import (
 	"context"
+	"github.com/zeromicro/go-zero/zrpc"
 	"go-common/tool"
+	"greet-pb/payment/paymentclient"
 	"greet-pb/payment/types/payment"
 
 	"payment/cmd/api/internal/svc"
@@ -32,8 +34,9 @@ func (l *CreatePaymentLogic) CreatePayment(req *types.PaymentReq) (resp *types.P
 		PaymentAmount:       tool.Float64ToString(req.PaymentAmount, 2),
 		TransactionPassword: req.TransactionPassword,
 	}
-	rpcRelay, err := l.svcCtx.PaymentRpc.CreatePayment(l.ctx, &rpcCreatePaymentReq)
 
+	paymentRpc := paymentclient.NewPayment(zrpc.MustNewClient(l.svcCtx.Config.PaymentRpc))
+	rpcRelay, err := paymentRpc.CreatePayment(l.ctx, &rpcCreatePaymentReq)
 	if err != nil {
 		return nil, err
 	}

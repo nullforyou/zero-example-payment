@@ -8,10 +8,5 @@ type Config struct {
 		DataSource  string
 		TablePrefix string
 	}
-	OrderRpc     zrpc.RpcClientConf
-	MicroService struct {
-		Driver   string
-		Target   string
-		EndPoint string
-	}
+	OrderRpc zrpc.RpcClientConf
 }
